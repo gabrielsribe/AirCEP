@@ -1,0 +1,1717 @@
+{
+	"annotations": {
+	  "list": [
+		{
+		  "builtIn": 1,
+		  "datasource": {
+			"type": "grafana",
+			"uid": "-- Grafana --"
+		  },
+		  "enable": true,
+		  "hide": true,
+		  "iconColor": "rgba(0, 211, 255, 1)",
+		  "name": "Annotations & Alerts",
+		  "target": {
+			"limit": 100,
+			"matchAny": false,
+			"tags": [],
+			"type": "dashboard"
+		  },
+		  "type": "dashboard"
+		}
+	  ]
+	},
+	"editable": true,
+	"fiscalYearStartMonth": 0,
+	"graphTooltip": 0,
+	"id": 3,
+	"links": [],
+	"liveNow": false,
+	"panels": [
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 24,
+		  "x": 0,
+		  "y": 0
+		},
+		"id": 16,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">AirCEP</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Gabriel de Souza Ribeiro",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-green",
+				  "value": 50
+				},
+				{
+				  "color": "yellow",
+				  "value": 100
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 150
+				},
+				{
+				  "color": "dark-red",
+				  "value": 250
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 300
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 0,
+		  "y": 3
+		},
+		"id": 8,
+		"options": {
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true,
+		  "text": {}
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(particulasInalaveisMp10 AS UNSIGNED) AS metric\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP10",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-green",
+				  "value": 50
+				},
+				{
+				  "color": "yellow",
+				  "value": 100
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 150
+				},
+				{
+				  "color": "dark-red",
+				  "value": 250
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 300
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 5,
+		  "y": 3
+		},
+		"id": 23,
+		"options": {
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true,
+		  "text": {}
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(particulasInalaveisFinasMp25 AS UNSIGNED) AS metric\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP2,5",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-green",
+				  "value": 100
+				},
+				{
+				  "color": "yellow",
+				  "value": 130
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 160
+				},
+				{
+				  "color": "dark-red",
+				  "value": 200
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 250
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 10,
+		  "y": 3
+		},
+		"id": 11,
+		"options": {
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(ozonio AS UNSIGNED) AS metric\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "O3",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-green",
+				  "value": 9
+				},
+				{
+				  "color": "yellow",
+				  "value": 11
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 13
+				},
+				{
+				  "color": "dark-red",
+				  "value": 15
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 20
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 15,
+		  "y": 3
+		},
+		"id": 10,
+		"options": {
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true,
+		  "text": {}
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(monoxidoDeCarbono AS UNSIGNED) AS metric\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "CO",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-green",
+				  "value": 200
+				},
+				{
+				  "color": "yellow",
+				  "value": 240
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 320
+				},
+				{
+				  "color": "dark-red",
+				  "value": 1130
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 1500
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 4,
+		  "x": 20,
+		  "y": 3
+		},
+		"id": 7,
+		"options": {
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(dioxidoDeNitrogenio AS UNSIGNED) AS metric\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "NO2",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 5,
+		  "x": 0,
+		  "y": 10
+		},
+		"id": 3,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">MP10</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Último alerta",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 5,
+		  "x": 5,
+		  "y": 10
+		},
+		"id": 17,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">MP2,5</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Último alerta",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 5,
+		  "x": 10,
+		  "y": 10
+		},
+		"id": 18,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">O3</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Último alerta",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 5,
+		  "x": 15,
+		  "y": 10
+		},
+		"id": 19,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">CO</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Último alerta",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "prometheus",
+		  "uid": "PBFA97CFB590B2093"
+		},
+		"gridPos": {
+		  "h": 3,
+		  "w": 4,
+		  "x": 20,
+		  "y": 10
+		},
+		"id": 20,
+		"options": {
+		  "content": "<h1 style=\"text-align:center;\">NO2</h1>",
+		  "mode": "markdown"
+		},
+		"pluginVersion": "9.0.4",
+		"title": "Último alerta",
+		"type": "text"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-yellow",
+				  "value": 50
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 100
+				},
+				{
+				  "color": "dark-red",
+				  "value": 150
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 300
+				}
+			  ]
+			},
+			"unit": "short"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 0,
+		  "y": 13
+		},
+		"id": 28,
+		"options": {
+		  "colorMode": "background",
+		  "graphMode": "none",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "textMode": "auto"
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(particulasInalaveisMp10 AS UNSIGNED) AS metric\nFROM alertas_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP10 - Alerta",
+		"type": "stat"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-yellow",
+				  "value": 50
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 75
+				},
+				{
+				  "color": "dark-red",
+				  "value": 125
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 150
+				}
+			  ]
+			},
+			"unit": "short"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 5,
+		  "y": 13
+		},
+		"id": 9,
+		"options": {
+		  "colorMode": "background",
+		  "graphMode": "none",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "textMode": "auto"
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(particulasInalaveisFinasMp25 AS UNSIGNED) AS metric\nFROM alertas_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP2,5 - Alerta",
+		"type": "stat"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-yellow",
+				  "value": 50
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 75
+				},
+				{
+				  "color": "dark-red",
+				  "value": 125
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 150
+				}
+			  ]
+			},
+			"unit": "short"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 10,
+		  "y": 13
+		},
+		"id": 26,
+		"options": {
+		  "colorMode": "background",
+		  "graphMode": "none",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "textMode": "auto"
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(ozonio AS UNSIGNED) AS metric\nFROM alertas_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "O3 - Alerta",
+		"type": "stat"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-yellow",
+				  "value": 50
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 75
+				},
+				{
+				  "color": "dark-red",
+				  "value": 125
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 150
+				}
+			  ]
+			},
+			"unit": "short"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 5,
+		  "x": 15,
+		  "y": 13
+		},
+		"id": 29,
+		"options": {
+		  "colorMode": "background",
+		  "graphMode": "none",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "textMode": "auto"
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(monoxidoDeCarbono AS UNSIGNED) AS metric\nFROM alertas_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "O2 - Alerta",
+		"type": "stat"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "dark-yellow",
+				  "value": 50
+				},
+				{
+				  "color": "dark-orange",
+				  "value": 75
+				},
+				{
+				  "color": "dark-red",
+				  "value": 125
+				},
+				{
+				  "color": "dark-purple",
+				  "value": 150
+				}
+			  ]
+			},
+			"unit": "short"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 4,
+		  "x": 20,
+		  "y": 13
+		},
+		"id": 27,
+		"options": {
+		  "colorMode": "background",
+		  "graphMode": "none",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "textMode": "auto"
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "table",
+			"group": [],
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT\n  CAST(timestamp AS DATETIME(3)) AS time,\n  CAST(dioxidoDeNitrogenio AS UNSIGNED) AS metric\nFROM alertas_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY timestamp",
+			"refId": "A",
+			"select": [
+			  [
+				{
+				  "params": [
+					"value"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "NO2 - Alerta",
+		"type": "stat"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "palette-classic"
+			},
+			"custom": {
+			  "axisLabel": "",
+			  "axisPlacement": "auto",
+			  "barAlignment": 0,
+			  "drawStyle": "line",
+			  "fillOpacity": 0,
+			  "gradientMode": "none",
+			  "hideFrom": {
+				"legend": false,
+				"tooltip": false,
+				"viz": false
+			  },
+			  "lineInterpolation": "linear",
+			  "lineWidth": 1,
+			  "pointSize": 5,
+			  "scaleDistribution": {
+				"type": "linear"
+			  },
+			  "showPoints": "auto",
+			  "spanNulls": false,
+			  "stacking": {
+				"group": "A",
+				"mode": "none"
+			  },
+			  "thresholdsStyle": {
+				"mode": "off"
+			  }
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 24,
+		  "x": 0,
+		  "y": 20
+		},
+		"id": 1,
+		"options": {
+		  "legend": {
+			"calcs": [],
+			"displayMode": "list",
+			"placement": "bottom"
+		  },
+		  "tooltip": {
+			"mode": "single",
+			"sort": "none"
+		  }
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "time_series",
+			"group": [],
+			"hide": false,
+			"key": "Q-8c911dd8-4e95-4d51-802a-9bc8d2c3800a-0",
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT CAST(timestamp AS DATETIME(3)) AS time\n,\nCAST(particulasInalaveisMp10 AS UNSIGNED)\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY time;",
+			"refId": "B",
+			"select": [
+			  [
+				{
+				  "params": [
+					"particulasInalaveisMp10"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP10",
+		"type": "timeseries"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "palette-classic"
+			},
+			"custom": {
+			  "axisLabel": "",
+			  "axisPlacement": "auto",
+			  "barAlignment": 0,
+			  "drawStyle": "line",
+			  "fillOpacity": 0,
+			  "gradientMode": "none",
+			  "hideFrom": {
+				"legend": false,
+				"tooltip": false,
+				"viz": false
+			  },
+			  "lineInterpolation": "linear",
+			  "lineWidth": 1,
+			  "pointSize": 5,
+			  "scaleDistribution": {
+				"type": "linear"
+			  },
+			  "showPoints": "auto",
+			  "spanNulls": false,
+			  "stacking": {
+				"group": "A",
+				"mode": "none"
+			  },
+			  "thresholdsStyle": {
+				"mode": "off"
+			  }
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 24,
+		  "x": 0,
+		  "y": 28
+		},
+		"id": 12,
+		"options": {
+		  "legend": {
+			"calcs": [],
+			"displayMode": "list",
+			"placement": "bottom"
+		  },
+		  "tooltip": {
+			"mode": "single",
+			"sort": "none"
+		  }
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "time_series",
+			"group": [],
+			"hide": false,
+			"key": "Q-8c911dd8-4e95-4d51-802a-9bc8d2c3800a-0",
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT CAST(timestamp AS DATETIME(3)) AS time\n,\nCAST(particulasInalaveisFinasMp25 AS UNSIGNED)\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY time;",
+			"refId": "B",
+			"select": [
+			  [
+				{
+				  "params": [
+					"particulasInalaveisMp10"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "MP2,5",
+		"type": "timeseries"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "palette-classic"
+			},
+			"custom": {
+			  "axisLabel": "",
+			  "axisPlacement": "auto",
+			  "barAlignment": 0,
+			  "drawStyle": "line",
+			  "fillOpacity": 0,
+			  "gradientMode": "none",
+			  "hideFrom": {
+				"legend": false,
+				"tooltip": false,
+				"viz": false
+			  },
+			  "lineInterpolation": "linear",
+			  "lineWidth": 1,
+			  "pointSize": 5,
+			  "scaleDistribution": {
+				"type": "linear"
+			  },
+			  "showPoints": "auto",
+			  "spanNulls": false,
+			  "stacking": {
+				"group": "A",
+				"mode": "none"
+			  },
+			  "thresholdsStyle": {
+				"mode": "off"
+			  }
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 24,
+		  "x": 0,
+		  "y": 35
+		},
+		"id": 13,
+		"options": {
+		  "legend": {
+			"calcs": [],
+			"displayMode": "list",
+			"placement": "bottom"
+		  },
+		  "tooltip": {
+			"mode": "single",
+			"sort": "none"
+		  }
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "time_series",
+			"group": [],
+			"hide": false,
+			"key": "Q-8c911dd8-4e95-4d51-802a-9bc8d2c3800a-0",
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT CAST(timestamp AS DATETIME(3)) AS time\n,\nCAST(ozonio AS UNSIGNED)\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY time;",
+			"refId": "B",
+			"select": [
+			  [
+				{
+				  "params": [
+					"particulasInalaveisMp10"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "O3",
+		"type": "timeseries"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "palette-classic"
+			},
+			"custom": {
+			  "axisLabel": "",
+			  "axisPlacement": "auto",
+			  "barAlignment": 0,
+			  "drawStyle": "line",
+			  "fillOpacity": 0,
+			  "gradientMode": "none",
+			  "hideFrom": {
+				"legend": false,
+				"tooltip": false,
+				"viz": false
+			  },
+			  "lineInterpolation": "linear",
+			  "lineWidth": 1,
+			  "pointSize": 5,
+			  "scaleDistribution": {
+				"type": "linear"
+			  },
+			  "showPoints": "auto",
+			  "spanNulls": false,
+			  "stacking": {
+				"group": "A",
+				"mode": "none"
+			  },
+			  "thresholdsStyle": {
+				"mode": "off"
+			  }
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 7,
+		  "w": 24,
+		  "x": 0,
+		  "y": 43
+		},
+		"id": 14,
+		"options": {
+		  "legend": {
+			"calcs": [],
+			"displayMode": "list",
+			"placement": "bottom"
+		  },
+		  "tooltip": {
+			"mode": "single",
+			"sort": "none"
+		  }
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "time_series",
+			"group": [],
+			"hide": false,
+			"key": "Q-8c911dd8-4e95-4d51-802a-9bc8d2c3800a-0",
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT CAST(timestamp AS DATETIME(3)) AS time\n,\nCAST(monoxidoDeCarbono AS UNSIGNED)\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY time;",
+			"refId": "B",
+			"select": [
+			  [
+				{
+				  "params": [
+					"particulasInalaveisMp10"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "CO",
+		"type": "timeseries"
+	  },
+	  {
+		"datasource": {
+		  "type": "mysql",
+		  "uid": "P211906C1C32DB77E"
+		},
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "palette-classic"
+			},
+			"custom": {
+			  "axisLabel": "",
+			  "axisPlacement": "auto",
+			  "barAlignment": 0,
+			  "drawStyle": "line",
+			  "fillOpacity": 0,
+			  "gradientMode": "none",
+			  "hideFrom": {
+				"legend": false,
+				"tooltip": false,
+				"viz": false
+			  },
+			  "lineInterpolation": "linear",
+			  "lineWidth": 1,
+			  "pointSize": 5,
+			  "scaleDistribution": {
+				"type": "linear"
+			  },
+			  "showPoints": "auto",
+			  "spanNulls": false,
+			  "stacking": {
+				"group": "A",
+				"mode": "none"
+			  },
+			  "thresholdsStyle": {
+				"mode": "off"
+			  }
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			}
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 24,
+		  "x": 0,
+		  "y": 50
+		},
+		"id": 15,
+		"options": {
+		  "legend": {
+			"calcs": [],
+			"displayMode": "list",
+			"placement": "bottom"
+		  },
+		  "tooltip": {
+			"mode": "single",
+			"sort": "none"
+		  }
+		},
+		"pluginVersion": "9.0.4",
+		"targets": [
+		  {
+			"datasource": {
+			  "type": "mysql",
+			  "uid": "P211906C1C32DB77E"
+			},
+			"format": "time_series",
+			"group": [],
+			"hide": false,
+			"key": "Q-8c911dd8-4e95-4d51-802a-9bc8d2c3800a-0",
+			"metricColumn": "particulasInalaveisMp10",
+			"rawQuery": true,
+			"rawSql": "SELECT CAST(timestamp AS DATETIME(3)) AS time\n,\nCAST(dioxidoDeNitrogenio AS UNSIGNED)\nFROM qualidade_ar\nWHERE timestamp BETWEEN $__timeFrom() AND $__timeTo()\nORDER BY time;",
+			"refId": "B",
+			"select": [
+			  [
+				{
+				  "params": [
+					"particulasInalaveisMp10"
+				  ],
+				  "type": "column"
+				}
+			  ]
+			],
+			"table": "qualidade_ar",
+			"timeColumn": "timestamp",
+			"timeColumnType": "varchar",
+			"where": [
+			  {
+				"name": "$__timeFilter",
+				"params": [],
+				"type": "macro"
+			  }
+			]
+		  }
+		],
+		"title": "NO2",
+		"type": "timeseries"
+	  }
+	],
+	"refresh": false,
+	"schemaVersion": 36,
+	"style": "dark",
+	"tags": [],
+	"templating": {
+	  "list": []
+	},
+	"time": {
+	  "from": "2022-01-01T03:00:00.000Z",
+	  "to": "2022-01-15T01:56:17.704Z"
+	},
+	"timepicker": {},
+	"timezone": "",
+	"title": "AirCEP",
+	"uid": "EOwdb-FNk",
+	"version": 1,
+	"weekStart": ""
+  }

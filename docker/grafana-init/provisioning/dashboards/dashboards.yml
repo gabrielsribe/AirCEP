@@ -1,0 +1,27 @@
+apiVersion: 1
+
+providers:
+    - name: default
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /etc/grafana/dashboard.json
+    - name: docker_monitor_cad
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /etc/grafana/docker_cad.json
+    - name: docker_air_cep
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /etc/grafana/air_cep.json

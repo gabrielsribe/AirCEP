@@ -1,0 +1,145 @@
+#docker-compose with data and flink job
+version: "3.7"
+services:
+  client:
+    image: gabrielsribe/flink:1.14.4-scala_2.12-java8
+    build: ../docker/flink-cep
+    command: "flink run -d /opt/flink/usrlib/flink-cep.jar"
+    depends_on:
+      - jobmanager
+      - kafka
+      - mysql
+    volumes:
+      - ./conf:/opt/flink/conf
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+  jobmanager:
+    image: gabrielsribe/flink:1.14.4-scala_2.12-java8
+    build: ../docker/flink-cep
+    command: "jobmanager.sh start-foreground"
+    hostname: "jobmanager"
+    expose:
+      - "6123"
+      - "9250"
+      - "9251"
+    ports:
+      - 8081:8081
+    volumes:
+      - ./conf:/opt/flink/conf
+      - flink-checkpoints-directory:/tmp/flink-checkpoints-directory
+      - /tmp/flink-savepoints-directory:/tmp/flink-savepoints-directory
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    depends_on:
+      - kafka
+      - mysql
+    restart: always
+  taskmanager-01:
+    image: gabrielsribe/flink:1.14.4-scala_2.12-java8
+    build: ../docker/flink-cep/
+    hostname: "taskmanager-01"
+    expose:
+      - "6121"
+      - "6122"
+      - "9250"
+    depends_on:
+      - jobmanager
+    command: "taskmanager.sh start-foreground"
+    links:
+      - jobmanager:jobmanager
+    volumes:
+      - ./conf:/opt/flink/conf
+      - flink-checkpoints-directory:/tmp/flink-checkpoints-directory
+      - /tmp/flink-savepoints-directory:/tmp/flink-savepoints-directory
+      - datarate:/tmp/
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    restart: always
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    restart: always
+  kafka:
+    image: wurstmeister/kafka:2.13-2.8.1
+    ports:
+      - "9094:9094"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_ADVERTISED_PORT: "9092"
+      HOSTNAME_COMMAND: "route -n | awk '/UG[ \t]/{print $$2}'"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "air:1:1"
+      #KAFKA_CREATE_TOPICS: "kafka:1:1"
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,OUTSIDE://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,OUTSIDE://localhost:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+#  data-generator:
+#      image: gabrielsribe/data-generator:1
+#      build: ../docker/data-generator
+#      depends_on:
+#        - kafka
+#        - client
+#        - jobmanager
+#        - taskmanager-01
+  mysql:
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password --secure_file_priv=/data
+    environment:
+      MYSQL_USER: "aircep"
+      MYSQL_PASSWORD: "aircep"
+      MYSQL_DATABASE: "AirCEP"
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - ../docker/mysql-init:/docker-entrypoint-initdb.d
+      - ../docker/flink-cep/data:/data
+    ports:
+      - "3306:3306"
+  prometheus:
+    image: prom/prometheus
+    hostname: "prometheus"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../docker/prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+    - cadvisor
+  grafana:
+    image: grafana/grafana:9.0.4-ubuntu
+    hostname: "grafana"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+      - mysql
+    volumes:
+      - ../docker/grafana-init/provisioning/:/etc/grafana/provisioning/
+      - ../docker/grafana-init/dashboard.json:/etc/grafana/dashboard.json
+      - ../docker/grafana-init/air_cep.json:/etc/grafana/air_cep.json
+      - ../docker/grafana-init/docker_cad.json:/etc/grafana/docker_cad.json
+      - ../docker/grafana-init/grafana.ini:/etc/grafana/grafana.ini
+    restart: always
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    container_name: cadvisor
+    ports:
+    - 8080:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+volumes:
+  flink-checkpoints-directory:
+  datarate:
